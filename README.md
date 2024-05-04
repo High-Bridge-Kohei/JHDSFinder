@@ -48,7 +48,7 @@ run_Windows.bat (もしくはrun_macOS.command) の実行時に、環境構築�
 </div>
 
 
-おそらくYahoo!ファイナンスでは、アイ・アールジャパンホールディングスの2024年3月の1株配当が15円であると[公表](https://www.irjapan.jp/ir_info/stock/premium.html)されているのを反映し、年間での1株配当は30円であると推定し、配当利回りを算出しています。
+アイ・アールジャパンホールディングスは2023年の1株あたりの配当は113円でしたが、2024年3月の1株配当が15円であると[公表](https://www.irjapan.jp/ir_info/stock/premium.html)しています。Yahoo!ファイナンスでは、公表された情報から年間での1株配当は30円であると推定し、配当利回りを算出しています。この例のように最新のデータで情報が異なる場合は乖離が生じるので、Yahoo!ファイナンスで確認できるようにリンクを設けています。
 <img src="./img/ir_japan_kabuyoho.png" width="400">
 
 ### TODO
