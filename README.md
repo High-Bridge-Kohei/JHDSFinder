@@ -3,8 +3,8 @@
 
 ![GUIツール](./img/GUI.png)
 
-### 環境構築
-WindowsとmacOSでの動作確認ができています。環境構築の手順は以下です。
+### GUIツール起動手順
+WindowsとmacOSでの動作確認ができています。GUIツール起動の手順は以下です。
 
 1. **プログラムのダウンロード**
    [Github](https://github.com/High-Bridge-Kohei/JHDSFinder)からZipファイルでダウンロードすることができます。ダウンロードしたzipファイルを解凍してください。
