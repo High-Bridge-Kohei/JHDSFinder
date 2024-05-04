@@ -18,7 +18,7 @@ class MainWindowUI(QMainWindow):
     TITLE_SCREENED_RESULT_VIEW = "スクリーニング結果"
     TITLE_PERFORMANCE_VIEW = "企業業績"
 
-    SPACE = 10
+    SPACE = 8
 
     def __init__(self, mediator: Mediator):
         super().__init__()
@@ -30,7 +30,7 @@ class MainWindowUI(QMainWindow):
     def set_font(self):
         os_name = platform.system()
         if os_name == "Darwin":
-            self.FONT_SIZE_H1 = 20
+            self.FONT_SIZE_H1 = 18
             self.FONT_SIZE_H2 = 16
             self.FONT_SIZE_H3 = 12
         elif os_name == "Windows":

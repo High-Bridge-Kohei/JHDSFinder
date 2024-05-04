@@ -43,6 +43,7 @@ class RangeConditionItem(Component):
         else:
             self.default_value = self.condition.vmax
         self.parent = parent
+
         # LineEdit
         self.lineEdit = QLineEdit(parent)
         self.lineEdit.setFont(font)
@@ -154,7 +155,6 @@ class EasySettingItemCheckBox(ComponentQCheckBox):
 
 
 class EasySettingConditionItems(Component):
-
     item_dict = {
         REVENUE: [
             {
@@ -252,11 +252,15 @@ class EasySettingConditionItems(Component):
         self.widget_list: List[QWidget] = []
         self.check_box_list: List[QCheckBox] = []
         self.range_condition_item_list = []
+        range_type_list = [OPERATING_PROFIT_MARGIN, EQUITY_RATIO, DIVIDEND_PAYOUT_RATIO]
+        asr = ("\u2070" + "*")[-1]
         n_row = 0
         for i, (item_name, item_list) in enumerate(self.item_dict.items()):
             n_row += 1
             self.label = QLabel(self.parent)
             item_text = f"{i+1}. {item_name}"
+            if item_name in range_type_list:
+                item_text += asr
             self.label.setText(item_text)
             self.label.setFont(self.h2Font)
             self.gridLayout.addWidget(self.label, n_row, 0, 1, 2)
@@ -301,6 +305,11 @@ class EasySettingConditionItems(Component):
                     self.widget_list.append(checkBox)
                 self.check_box_list.append(checkBox)
         self.settingVBoxLayout.addLayout(self.gridLayout)
+        self.averageYearLabel = QLabel(self.parent)
+        self.averageYearLabel.setText("※直近3年の平均値")
+        self.averageYearLabel.setFont(self.h2Font)
+        self.averageYearLabel.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.settingVBoxLayout.addWidget(self.averageYearLabel)
 
     def get_conditions(self) -> Conditions:
         conditions = Conditions([])

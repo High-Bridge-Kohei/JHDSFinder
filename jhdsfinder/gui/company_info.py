@@ -18,11 +18,6 @@ from jhdsfinder.gui.events import Event
 from jhdsfinder.gui import utils
 
 
-class FigureWidget(QWidget):
-    def __init__(self, parent: QWidget, geometory: tuple) -> None:
-        super().__init__(parent)
-
-
 class CompanyPerformanceCanvas(ComponentFigureCanvas):
     title_font_size = 10
     axis_font_size = 8
@@ -217,8 +212,7 @@ class CompanyInformation(Component):
         self.h3Font = h3Font
         label_font = self.h2Font
         small_label_font = self.h3Font
-        asr = "\u2070" + "*"
-        asr = asr[-1]
+        asr = ("\u2070" + "*")[-1]
         self.labels = [
             InformationLabel(parent, "銘柄名", label_font),
             InformationLabel(parent, "業種", label_font),
@@ -238,8 +232,9 @@ class CompanyInformation(Component):
             InformationLabel(parent, "BPS" + asr, label_font),
             InformationLabel(parent, "ROE" + asr, label_font),
             InformationLabel(parent, "ROA" + asr, label_font),
-            InformationLabel(parent, "自己資本比率" + asr, label_font),
             InformationLabel(parent, "営業利益率" + asr, label_font),
+            InformationLabel(parent, "自己資本比率" + asr, label_font),
+            InformationLabel(parent, "配当性向" + asr, label_font),
         ]
         self.init_ui()
 
@@ -339,6 +334,12 @@ class CompanyInformation(Component):
         roe = "{:.2f}".format(series[ROE_AVG].item()) + " %"
         roa = "{:.2f}".format(series[ROA_AVG].item()) + " %"
         equity_ratio = "{:.2f}".format(series[EQUITY_RATIO_AVG].item()) + " %"
+        operating_profit_margin = (
+            "{:.2f}".format(series[OPERATING_PROFIT_MARGIN_AVG].item()) + " %"
+        )
+        dividend_payout_ratio = (
+            "{:.2f}".format(series[DIVIDEND_PAYOUT_RATIO_AVG].item()) + " %"
+        )
         info_texts = [
             company_name,
             industry_category,
@@ -352,7 +353,9 @@ class CompanyInformation(Component):
             bps,
             roe,
             roa,
+            operating_profit_margin,
             equity_ratio,
+            dividend_payout_ratio,
         ]
         self.companyCodeLineEdit.setText(company_code)
         for i in range(len(info_texts)):
