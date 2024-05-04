@@ -7,7 +7,8 @@
 WindowsとmacOSでの動作確認ができています。環境構築の手順は以下です。
 
 1. **プログラムのダウンロード**
-   [Github]()からZipファイルでダウンロードすることができます。ダウンロードしたzipファイルを解凍してください。
+   [Github](https://github.com/High-Bridge-Kohei/JHDSFinder)からZipファイルでダウンロードすることができます。ダウンロードしたzipファイルを解凍してください。
+![ダウンロード](./img/donwnload_zip.png)
 2. **GUIツール起動プログラムの実行**
    Windowsの場合はrun_Windows.bat、macOSの場合はrun_macOS.commandを実行してください。ファイルのダブルクリックで実行ができない場合は、以下の手順で実行してください。
    1. コマンドプロンプト(Windows)もしくはターミナル(macOS)を起動する。
@@ -42,13 +43,13 @@ run_Windows.bat (もしくはrun_macOS.command) の実行時に、環境構築�
 #### 乖離が大きかった例
 アイ・アールジャパンホールディングスはGUIの検索結果では、配当利回りが9.32%と算出されていますが、Yahoo!ファイナンスでは配当利回り2.47%です。
 <div style="display: flex;">
-    <img src="./img/ir_japan_gui.png" style="width: 400px;">
-    <img src="./img/ir_japan_yahoo.png" style="width: 200px;">
+    <img src="./img/ir_japan_gui.png" style="width: 650px;">
+    <img src="./img/ir_japan_yahoo.png" style="width: 350px;">
 </div>
 
 
 おそらくYahoo!ファイナンスでは、アイ・アールジャパンホールディングスの2024年3月の1株配当が15円であると[公表](https://www.irjapan.jp/ir_info/stock/premium.html)されているのを反映し、年間での1株配当は30円であると推定し、配当利回りを算出しています。
-<img src="./img/ir_japan_kabuyoho.png" width="300">
+<img src="./img/ir_japan_kabuyoho.png" width="400">
 
 ### TODO
 - データアップデートする際のポップアップ画面表示
