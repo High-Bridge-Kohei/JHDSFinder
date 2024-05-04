@@ -4,3 +4,5 @@ data/performance.csv
 data/stock_price.csv
 tools/miniconda3
 **/__pycache__/
+.gitignore
+.DS_Store
