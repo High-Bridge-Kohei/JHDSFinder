@@ -1,18 +1,21 @@
 @echo off
 
+rem Change directory to JHDSFinder folder
+cd %~dp0
+
 rem Base Path Setting
 path C:\Windows
 path C:\Windows\System32;%path%
 path C:\Windows\System32\Wbem;%path%
 path C:\Windows\System32\WindowsPowerShell\v1.0;%path%
 
-cd %~dp0
-
+rem Python Path Setting
 set MINICONDA_DIR=%cd%\tools\miniconda3
 path %MINICONDA_DIR%;%path%
 path %cd%;%path%
 set PYTHONPATH=%path%
 
+rem Installing MiniConda & Python library
 if exist "%MINICONDA_DIR%" (
     echo Miniconda is already installed in %MINICONDA_DIR%
 ) else (
@@ -31,3 +34,5 @@ if exist "%MINICONDA_DIR%" (
 python -V
 
 python .\jhdsfinder\gui\main.py
+
+pause
