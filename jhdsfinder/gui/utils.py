@@ -24,3 +24,11 @@ def show_warning_popup(parent: QWidget, message: str):
     msgBox.setIcon(QMessageBox.Icon.Warning)
     msgBox.setText(message)
     msgBox.show()
+
+
+def is_float(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False

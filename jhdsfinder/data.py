@@ -473,28 +473,10 @@ class FinanceData:
 
     def make_screened_company_dataframe(self):
         df = self.market_df.loc[:, [COMPANY_CODE, COMPANY_NAME]]
-        # _dict = {
-        #     TOPIX_CORE30: LEARGE_SCALE_CATEGORY,
-        #     TOPIX_LARGE70: LEARGE_SCALE_CATEGORY,
-        #     TOPIX_MID400: MIDDLE_SCALE_CATEGORY,
-        #     TOPIX_SMALL1: SMALL_SCALE_CATEGORY,
-        #     TOPIX_SMALL2: SMALL_SCALE_CATEGORY,
-        #     OTHER: OTHER_SCALE_CATEGORY,
-        # }
-        # df[SCALE_CATEGORY] = df[SCALE_CATEGORY].replace(_dict)
         for col in [DIVIDEND_YIELD, PER, PBR]:
             df[col] = self.performance_df[col].values
             df[col] = df[col].astype(float).round(2)
-        df = df.loc[
-            :,
-            [
-                COMPANY_CODE,
-                COMPANY_NAME,
-                DIVIDEND_YIELD,
-                PER,
-                PBR,
-            ],
-        ]
+        df = df.loc[:, [COMPANY_CODE, COMPANY_NAME, DIVIDEND_YIELD, PER, PBR]]
         return df
 
     def get_market_dataframe(self):

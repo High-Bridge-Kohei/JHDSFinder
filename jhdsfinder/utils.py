@@ -29,6 +29,13 @@ def get_file_datetime(filepath) -> datetime:
     return file_modified_datetime
 
 
+def get_ymd_datetime(date: datetime):
+    date_format = "%Y/%m%d"
+    date_str = date.strftime(date_format)
+    date = datetime.strptime(date_str, date_format)
+    return date
+
+
 def get_update_flag(filepath: str, update_frequency_days: int = 1) -> bool:
     update = False
     if not os.path.exists(filepath):
@@ -36,9 +43,12 @@ def get_update_flag(filepath: str, update_frequency_days: int = 1) -> bool:
     else:
         # ファイルの更新日時を取得
         file_modified_datetime = get_file_datetime(filepath)
+        file_modified_datetime = get_ymd_datetime(file_modified_datetime)
         # 更新期間を計算
-        thres = datetime.now() - timedelta(days=update_frequency_days)
-        if file_modified_datetime < thres:
+        now = get_ymd_datetime(datetime.now())
+        sub_date = now - file_modified_datetime
+        thres = timedelta(days=update_frequency_days)
+        if sub_date >= thres:
             # 更新期間を過ぎた古いファイルならアップデート
             update = True
     return update

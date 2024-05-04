@@ -203,7 +203,7 @@ PER = "PER"
 PSR = "PSR"
 PBR = "PBR"
 
-PERFORMANCE_CSV_FILENAME = "peformance.csv"
+PERFORMANCE_CSV_FILENAME = "performance.csv"
 STOCK_PRICE = "株価"
 
 

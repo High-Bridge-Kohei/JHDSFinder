@@ -1,7 +1,9 @@
-from typing import Tuple, List
 from PyQt6.QtCore import *
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
+import matplotlib
+
+matplotlib.use("agg")
 import matplotlib.pyplot as plt
 import japanize_matplotlib
 
@@ -171,7 +173,6 @@ class CompanyCodeLineEdit(ComponentQLineEdit):
         if entered_company_code in self.company_codes:
             self.mediator.set_selected_company_data(entered_company_code)
             self.send_event(Event.COMPANY_CODE_ENTERED)
-            print(Event.COMPANY_CODE_ENTERED)
         else:
             print(f"{entered_company_code} is not acceptable.")
             if len(entered_company_code) > 6:
@@ -238,6 +239,7 @@ class CompanyInformation(Component):
             InformationLabel(parent, "ROE" + asr, label_font),
             InformationLabel(parent, "ROA" + asr, label_font),
             InformationLabel(parent, "自己資本比率" + asr, label_font),
+            InformationLabel(parent, "営業利益率" + asr, label_font),
         ]
         self.init_ui()
 

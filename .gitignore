@@ -1,6 +1,6 @@
 data/fy-data-all.csv
 data/market.csv
-data/peformance.csv
+data/performance.csv
 data/stock_price.csv
 tools/miniconda3
 **/__pycache__/

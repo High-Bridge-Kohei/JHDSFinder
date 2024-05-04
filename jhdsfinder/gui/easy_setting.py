@@ -7,6 +7,8 @@ from jhdsfinder.gui.abstract import *
 from jhdsfinder.screener import *
 from jhdsfinder.gui.components import *
 from jhdsfinder.gui.events import Event
+from jhdsfinder.gui import utils
+
 
 UPWARD_TREND = "右肩上がり"
 UNDER_RANGE = "XX%以下"
@@ -36,6 +38,11 @@ class RangeConditionItem(Component):
         assert self.keyword in check_box_text, check_box_text
         self.condition = condition
         self.origin_text = check_box_text
+        if self.condition.vmin is not None:
+            self.default_value = self.condition.vmin
+        else:
+            self.default_value = self.condition.vmax
+        self.parent = parent
         # LineEdit
         self.lineEdit = QLineEdit(parent)
         self.lineEdit.setFont(font)
@@ -70,17 +77,23 @@ class RangeConditionItem(Component):
         return thres
 
     def lineEditTextChanged(self):
-        # print("LineEdit text changed!", self.lineEdit.text())
-        text = self.get_check_box_text()
-        self.checkBox.setText(text)
-        # 条件変更
-        thres = self.get_threshold()
-        if self.condition.vmin is not None:
-            self.condition.vmin = thres
+        text = self.lineEdit.text()
+        if utils.is_float(text):
+            text = self.get_check_box_text()
+            self.checkBox.setText(text)
+            # 条件変更
+            thres = self.get_threshold()
+            if self.condition.vmin is not None:
+                self.condition.vmin = thres
+            else:
+                assert self.condition.vmax is not None
+                self.condition.vmax = thres
+            self.send_event(Event.EASY_SETTING_CONDITION_CHANGED)
         else:
-            assert self.condition.vmax is not None
-            self.condition.vmax = thres
-        self.send_event(Event.EASY_SETTING_CONDITION_CHANGED)
+            print(f"{text} is not acceptable.")
+            msg = f"{text}は数字に変換できません."
+            self.lineEdit.setText(str(self.default_value))
+            utils.show_warning_popup(self.parent, msg)
 
     def checkBoxStateChanged(self, state):
         checked = self.checkBox.isChecked()
