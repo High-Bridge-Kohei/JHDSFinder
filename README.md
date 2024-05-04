@@ -41,7 +41,7 @@ run_Windows.bat (もしくはrun_macOS.command) の実行時に、環境構築�
 ```
 
 #### 乖離が大きかった例
-アイ・アールジャパンホールディングスはGUIの検索結果では、配当利回りが9.32%と算出されていますが、Yahoo!ファイナンスでは配当利回り2.47%です。
+アイ・アールジャパンホールディングスは、GUIの検索結果では配当利回りが9.32%と算出されていますが、Yahoo!ファイナンスでは配当利回り2.47%です。
 <div style="display: flex;">
     <img src="./img/ir_japan_gui.png" style="width: 500px;">
     <img src="./img/ir_japan_yahoo.png" style="width: 250px;">
