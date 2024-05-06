@@ -17,10 +17,9 @@ run_Windows.bat (もしくはrun_macOS.command) の実行時に、環境構築�
    call run_Windows.bat
    ```
    **Macの場合**
-   最初にファイルの実行権限を与えるために、ターミナルを起動し、以下のコマンドを実行してください。
-
+   最初にファイルの実行権限を与えるために、ターミナルを起動し、以下のコマンドを実行してください。「chmod u+x 」を入力した後、run_macOS.commandのファイルをターミナルへドラック&ドロップすることで、コマンドを入力できます。
    ```
-   chmod u+x run_macOS.command
+   chmod u+x <run_macOS.commandのファイルのへのパス>
    ```
    ターミナルを閉じ、run_macOS.commandをダブルクリックして、プログラムを実行してください。
 
