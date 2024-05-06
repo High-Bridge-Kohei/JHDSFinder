@@ -5,28 +5,24 @@
 
 ### GUIツール起動手順
 WindowsとmacOSでの動作確認ができています。GUIツール起動の手順は以下です。
+run_Windows.bat (もしくはrun_macOS.command) の実行時に、環境構築が完了されていない場合は、MinicondaのインストールとPythonライブラリのインストールを行います。(3分程度かかります) 初回実行時以外は、GUIツールの起動のみが実行されます。
 
 1. **プログラムのダウンロード**
    [Github](https://github.com/High-Bridge-Kohei/JHDSFinder)からZipファイルでダウンロードすることができます。ダウンロードしたzipファイルを解凍してください。
 ![ダウンロード](./img/donwnload_zip.png)
 2. **GUIツール起動プログラムの実行**
-   Windowsの場合はrun_Windows.bat、macOSの場合はrun_macOS.commandを実行してください。ファイルのダブルクリックで実行ができない場合は、以下の手順で実行してください。
-   1. コマンドプロンプト(Windows)もしくはターミナル(macOS)を起動する。
-   2. 以下コマンドにより、ダウンロードしたrun_Windows.batがあるフォルダのパスにディレクトリを移動する。
-      ```
-      cd <JHDSFinderのパス>
-      ```
-   3. 以下コマンドでファイルを実行する。
-      Windowsの場合
-      ```
-      call run_Windows.bat
-      ```
-      macOSの場合
-      ```
-      source run_macOS.command
-      ```
+   **Windowsの場合**
+   run_Windows.batのファイルをダブルクリックしてください。PCによって、そのままプログラムの実行ができる場合とできない場合があります。できない場合はコマンドプロンプトは起動するので、以下のコマンドを入力し実行してください。
+   ```
+   call run_Windows.bat
+   ```
+   **Macの場合**
+   最初にファイルの実行権限を与えるために、ターミナルを起動し、以下のコマンドを実行してください。
 
-run_Windows.bat (もしくはrun_macOS.command) の実行時に、環境構築が完了されていない場合は、MinicondaのインストールとPythonライブラリのインストールを行います。初回実行時以外は、GUIツールの起動のみが実行されます。
+   ```
+   chmod u+x run_macOS.command
+   ```
+   ターミナルを閉じ、run_macOS.commandをダブルクリックして、プログラムを実行してください。
 
 ### 注意事項
 配当利回り等の企業情報が、Yahoo!ファイナンスなどの他のサイトと異なる場合があります。理由は以下です。
