@@ -85,11 +85,13 @@ class DetailSetting(Component):
         self.pushButton = DetailSettingPushButton(self.parent, self.mediator)
         self.settingVBoxLayout.addWidget(self.pushButton)
         self.pushButton.setFont(self.h2Font)
-        # TODO: なぜかエラー
         self.lineEdit = DetailSettingLineEdit(self.parent, self.mediator)
-        # self.lineEdit = DetailSettingLineEdit(self.parent)
         self.lineEdit.setFont(self.h3Font)
         self.settingVBoxLayout.addWidget(self.lineEdit)
+
+        # 開発途中
+        self.checkBox.setEnabled(False)
+        self.pushButton.setEnabled(False)
 
     def get_conditions(self):
         return Conditions([])

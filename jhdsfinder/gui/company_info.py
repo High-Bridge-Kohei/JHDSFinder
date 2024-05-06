@@ -1,3 +1,4 @@
+import math
 from PyQt6.QtCore import *
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
@@ -16,6 +17,20 @@ from jhdsfinder.screener import *
 from jhdsfinder.gui.components import *
 from jhdsfinder.gui.events import Event
 from jhdsfinder.gui import utils
+
+
+def value_to_label(value: float, unit: str = "", _format: str = "{:.2f}") -> str:
+    try:
+        if math.isnan(value):
+            label = "-"
+        else:
+            value = float(value)
+            label = f"{_format}".format(value)
+    except:
+        label = "-"
+    if len(unit):
+        label = f"{label} {unit}"
+    return label
 
 
 class CompanyPerformanceCanvas(ComponentFigureCanvas):
@@ -321,24 +336,24 @@ class CompanyInformation(Component):
         industry_category = company_data.industry_category_33
         scale_category = company_data.scale_category
         series = company_data.get_long_term_performance(calc_years=1)
-        stock_price = str(company_data.stock_price) + " 円"
+        stock_price = value_to_label(company_data.stock_price, "円", "{:.1f}")
         years, dividend_per_shares = company_data.get_dividend_per_share()
-        dividend_per_share = "{:.2f}".format(dividend_per_shares[-1]) + " 円"
-        dividend_yield = "{:.2f}".format(series[DIVIDEND_YIELD].item()) + " %"
-        per = "{:.2f}".format(series[PER].item()) + " 倍"
-        pbr = "{:.2f}".format(series[PBR].item()) + " 倍"
+        dividend_per_share = value_to_label(dividend_per_shares[-1], "円", "{:.1f}")
+        dividend_yield = value_to_label(series[DIVIDEND_YIELD], "%")
+        per = value_to_label(series[PER], "倍")
+        pbr = value_to_label(series[PBR], "倍")
         years, eps = company_data.get_EPS()
-        eps = "{:.1f}".format(eps[-1])
+        eps = value_to_label(eps[-1], _format="{:.1f}")
         years, bps = company_data.get_BPS()
-        bps = "{:.1f}".format(bps[-1])
-        roe = "{:.2f}".format(series[ROE_AVG].item()) + " %"
-        roa = "{:.2f}".format(series[ROA_AVG].item()) + " %"
-        equity_ratio = "{:.2f}".format(series[EQUITY_RATIO_AVG].item()) + " %"
-        operating_profit_margin = (
-            "{:.2f}".format(series[OPERATING_PROFIT_MARGIN_AVG].item()) + " %"
+        bps = value_to_label(bps[-1], _format="{:.1f}")
+        roe = value_to_label(series[ROE_AVG], "%")
+        roa = value_to_label(series[ROA_AVG], "%")
+        equity_ratio = value_to_label(series[EQUITY_RATIO_AVG], "%", "{:.1f}")
+        operating_profit_margin = value_to_label(
+            series[OPERATING_PROFIT_MARGIN_AVG], "%"
         )
-        dividend_payout_ratio = (
-            "{:.2f}".format(series[DIVIDEND_PAYOUT_RATIO_AVG].item()) + " %"
+        dividend_payout_ratio = value_to_label(
+            series[DIVIDEND_PAYOUT_RATIO_AVG], "%", "{:.1f}"
         )
         info_texts = [
             company_name,
