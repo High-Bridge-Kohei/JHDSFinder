@@ -30,11 +30,9 @@ def get_recent_weekday(date):
 
 def get_stock_price_date():
     today = datetime.datetime.now().date()
-    if is_holiday(today):
-        date = get_recent_weekday(today)
-    else:
-        date = today - datetime.timedelta(days=1)
-    return date
+    yesterday = today - datetime.timedelta(days=1)
+    recent_weekday = get_recent_weekday(yesterday)
+    return recent_weekday
 
 
 def get_download_link() -> str:

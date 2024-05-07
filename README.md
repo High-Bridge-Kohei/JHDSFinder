@@ -1,7 +1,7 @@
 ## JHDSFinder (Japanese High Dividend Stocks Finder)
 日本の優良高配当株を見つけるためのGUIツールです。[リベラルアーツ大学の高配当株投資方針](https://liberaluni.com/stock-tool)に基づいています。
 
-![GUIツール](./img/GUI.png)
+![GUIツール](./img/gui_demo.gif)
 
 ### GUIツール起動手順
 WindowsとmacOSでの動作確認ができています。GUIツール起動の手順は以下です。
