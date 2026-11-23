@@ -3,6 +3,7 @@ import io
 import datetime
 import jpholiday
 import zipfile
+import traceback
 
 import pandas as pd
 
@@ -28,21 +29,24 @@ def get_recent_weekday(date):
         return get_recent_weekday(date)
 
 
-def get_stock_price_date():
-    today = datetime.datetime.now().date()
+def get_stock_price_date(date=None):
+    if date is not None:
+        today = date
+    else:
+        today = datetime.datetime.now().date()
     yesterday = today - datetime.timedelta(days=1)
     recent_weekday = get_recent_weekday(yesterday)
     return recent_weekday
 
 
-def get_download_link() -> str:
+def get_download_link(date=None) -> str:
     """
     ダウンロード先リンクの例:
     - https://www.mujinzou.com/d_data/2024d/24_01d/T240125.zip
     - https://www.mujinzou.com/d_data/2024d/24_02d/T240221.zip
     - https://www.mujinzou.com/d_data/2024d/24_04d/T240425.zip
     """
-    date = get_stock_price_date()
+    date = get_stock_price_date(date)
     y = str(date.year)
     m = str(date.month).zfill(2)
     d = str(date.day).zfill(2)
@@ -50,14 +54,25 @@ def get_download_link() -> str:
     return url
 
 
-def download() -> StockPriceDataFrame:
-    url = get_download_link()
-    filename = os.path.basename(url).split(".")[0] + ".csv"
-    response = utils.access_url(url)
-    # zipファイル内のcsvファイルを直接読み込む
-    with zipfile.ZipFile(io.BytesIO(response.content), "r") as zip_ref:
-        with zip_ref.open(filename) as f:
-            df = pd.read_csv(f, encoding="shift_jis")
+def download(max_retry=10) -> StockPriceDataFrame:
+    num_retry = 0
+    date = datetime.datetime.now().date()
+    while num_retry < max_retry:
+        try:
+            date = date - datetime.timedelta(days=num_retry)
+            url = get_download_link(date)
+            filename = os.path.basename(url).split(".")[0] + ".csv"
+            response = utils.access_url(url)
+            # zipファイル内のcsvファイルを直接読み込む
+            with zipfile.ZipFile(io.BytesIO(response.content), "r") as zip_ref:
+                with zip_ref.open(filename) as f:
+                    df = pd.read_csv(f, encoding="shift_jis")
+            break
+        except Exception as e:
+            num_retry += 1
+            if num_retry == max_retry:
+                print(f"Error: {traceback.format_exc()}")
+                raise e
     df = StockPriceDataFrame(df.values, columns=STOCK_PRICE_COLUMNS)
     df[COMPANY_CODE] = df[COMPANY_CODE].astype(str)
     return df
